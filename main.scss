@@ -1,0 +1,109 @@
+.textAreaSupport {
+    border: 1px solid #8a8a8a;
+    border-radius: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    & > * {
+        box-sizing: border-box;
+    }
+
+    &-hidden {
+        display: none !important;
+    }
+
+    &-footer {
+        text-align: right;
+        color: #8a8a8a;
+        padding: 0 20px;
+        grid-column: span 2;
+        border-top: 1px solid #8a8a8a;
+    }
+
+    &-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        grid-column: span 2;
+        border-bottom: 1px solid #8a8a8a;
+
+        &-separator {
+            color: #bdbdbd;
+        }
+
+        &-button {
+            width: 32px;
+            height: 32px;
+            margin: 5px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+
+            &-active {
+                border: 1px solid green !important;
+                border-radius: 3px;
+
+                .fas {
+                    color: green !important;
+                }
+            }
+
+            .fas {
+                color: #bdbdbd;
+            }
+
+            &:hover {
+                border-radius: 3px;
+                border: 1px solid #bdbdbd;
+            }
+        }
+
+        &:hover{
+            .fas {
+                color: #8a8a8a;
+            }
+        }
+    }
+
+    &-extra {
+        padding: 10px;
+        border-left: 1px solid #8a8a8a;
+
+        &-colorpicker, &-link, &-image {
+            display: grid;
+            border-bottom: 1px solid #8a8a8a;
+            border-top: 1px solid #8a8a8a;
+            padding: 20px 0;
+
+            &-button {
+                order: 1;
+                margin: 10px;
+            }
+
+            input {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    &-preview {
+        grid-column: span 2;
+        border-top: 1px solid #8a8a8a;
+    }
+
+    &-content, &-preview {
+        width: 100%;
+        min-height: 200px;
+        min-width: 200px;
+        padding: 10px;
+
+        blockquote::before {
+            content: '\201C';
+        }
+        
+        blockquote::after {
+            content: '\201D';
+        }
+    }
+}

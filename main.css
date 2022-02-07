@@ -1,0 +1,119 @@
+.textAreaSupport {
+  border: 1px solid #8a8a8a;
+  border-radius: 10px;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr auto;
+      grid-template-columns: 1fr auto;
+}
+
+.textAreaSupport > * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.textAreaSupport-hidden {
+  display: none !important;
+}
+
+.textAreaSupport-footer {
+  text-align: right;
+  color: #8a8a8a;
+  padding: 0 20px;
+  grid-column: span 2;
+  border-top: 1px solid #8a8a8a;
+}
+
+.textAreaSupport-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-column: span 2;
+  border-bottom: 1px solid #8a8a8a;
+}
+
+.textAreaSupport-bar-separator {
+  color: #bdbdbd;
+}
+
+.textAreaSupport-bar-button {
+  width: 32px;
+  height: 32px;
+  margin: 5px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.textAreaSupport-bar-button-active {
+  border: 1px solid green !important;
+  border-radius: 3px;
+}
+
+.textAreaSupport-bar-button-active .fas {
+  color: green !important;
+}
+
+.textAreaSupport-bar-button .fas {
+  color: #bdbdbd;
+}
+
+.textAreaSupport-bar-button:hover {
+  border-radius: 3px;
+  border: 1px solid #bdbdbd;
+}
+
+.textAreaSupport-bar:hover .fas {
+  color: #8a8a8a;
+}
+
+.textAreaSupport-extra {
+  padding: 10px;
+  border-left: 1px solid #8a8a8a;
+}
+
+.textAreaSupport-extra-colorpicker, .textAreaSupport-extra-link, .textAreaSupport-extra-image {
+  display: -ms-grid;
+  display: grid;
+  border-bottom: 1px solid #8a8a8a;
+  border-top: 1px solid #8a8a8a;
+  padding: 20px 0;
+}
+
+.textAreaSupport-extra-colorpicker-button, .textAreaSupport-extra-link-button, .textAreaSupport-extra-image-button {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  margin: 10px;
+}
+
+.textAreaSupport-extra-colorpicker input, .textAreaSupport-extra-link input, .textAreaSupport-extra-image input {
+  margin-top: 10px;
+}
+
+.textAreaSupport-preview {
+  grid-column: span 2;
+  border-top: 1px solid #8a8a8a;
+}
+
+.textAreaSupport-content, .textAreaSupport-preview {
+  width: 100%;
+  min-height: 200px;
+  min-width: 200px;
+  padding: 10px;
+}
+
+.textAreaSupport-content blockquote::before, .textAreaSupport-preview blockquote::before {
+  content: '\201C';
+}
+
+.textAreaSupport-content blockquote::after, .textAreaSupport-preview blockquote::after {
+  content: '\201D';
+}
+/*# sourceMappingURL=main.css.map */

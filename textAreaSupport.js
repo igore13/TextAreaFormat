@@ -88,8 +88,7 @@ class TextAreaSupport{
                         type: 'post',
                         url: 'index.php',
                         data: {
-                            textAreaSupport: 'previews',
-                            previews: this.#newTextArea.innerText
+                            textAreaSupportPreview: this.#newTextArea.innerText
                         },
                         success: function (response) {
                             elementTextAreaSupportPreview.innerHTML = response;
@@ -197,7 +196,7 @@ class TextAreaSupport{
                 e.preventDefault();
                 const elementImageAlt = this.#allElements.elementTextAreaSupportExtra_Image_Alt;
                 const elementImageUrl = this.#allElements.elementTextAreaSupportExtra_Image_Url;
-                this.#addFormattedText('[image]src=\'' + elementImageUrl.value + '\' alt=\'' + elementImageAlt.value + '\'[/image]', '', true);
+                this.#addFormattedText('[image=' + elementImageUrl.value + ']' + elementImageAlt.value + '[/image]', '', true);
                 elementImageAlt.value = '';
                 elementImageUrl.value = '';
             })

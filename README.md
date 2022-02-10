@@ -61,5 +61,9 @@
 
     require_once __DIR__ . '/appli/textAreaSupport.php';
 
+    if (!empty($_POST) && isset($_POST['result'])) {
+        $result = $TextAreaSupport->getFormatTextArea($_POST['textArea']);
+    }
+
 # Credits :
     - Kevin MORIER alias E404 - Not Found

@@ -1,3 +1,5 @@
+![TextAreaFormat](https://user-images.githubusercontent.com/35968454/153468271-657d6d12-7b0a-4074-aa1c-8f6c94ae9736.png)
+
 # TextAreaFormat :
     TextAreaFormat is used to convert text into HTML code.
 

@@ -1,8 +1,9 @@
 let textAreaSupport = new TextAreaSupport({
     element: document.querySelector('textarea'),
     selectedIcons: {
-        'Color': true,
-        'Image': true,
+        'Preview': false,
+        'Color': false,
+        'Image': false,
         'Link': false
     },
     hideIcons: {

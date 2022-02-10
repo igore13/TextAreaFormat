@@ -3,7 +3,6 @@
     Created at 04/02/2022
 -->
 
-
 <?php
     function formatTextAreaSupport(string $textAreaSupport): string {
         $sFormatText = htmlspecialchars($textAreaSupport);
@@ -17,14 +16,27 @@
             'paragraph' => ['start' => '<p>', 'end' => '</p>'],
             'quote' => ['start' => '<blockquote>', 'end' => '</blockquote>'],
             'center' => ['start' => '<center>', 'end' => '</center>'],
+            'image' => ['start' => '<img ', 'end' => '>'],
             'color' => [
                 'start' => function($sFormatText) {
-                    return $sFormatText = preg_replace_callback('/\[color=# *([A-Z0-9]+) *([A-Z0-9]+) *([A-Z0-9]+) *([A-Z0-9]+) *([A-Z0-9]+) *([A-Z0-9]+)\]/', function($aMatches) {
+                    return $sFormatText = preg_replace_callback('/\[color=# *([a-zA-Z0-9]+) *([a-zA-Z0-9]+) *([a-zA-Z0-9]+) *([a-zA-Z0-9]+) *([a-zA-Z0-9]+) *([a-zA-Z0-9]+)\]/', function($aMatches) {
                         return sprintf('<span style="color:#%s%s%s%s%s%s">', $aMatches[1], $aMatches[2], $aMatches[3], $aMatches[4], $aMatches[5], $aMatches[6]);
                     },  $sFormatText);
                 },
                 'end' => '</span>'
             ],
+            'link' => [
+                'start' => function($sFormatText) {
+                    return $sFormatText = preg_replace_callback('/\[link=(.*?)]/', function($aMatches) {
+                        $sUrl = $aMatches[1];
+                        if (substr($sUrl, 0, 4) != 'http') {
+                            $sUrl = 'http://' . $aMatches[1];
+                        }
+                        return sprintf('<a href="%s" target=_blank>', $sUrl);
+                    },  $sFormatText);
+                },
+                'end' => '</a>'
+            ]
         ];
 
         foreach ($sReplace as $sSearchText => $sReplaceText) {

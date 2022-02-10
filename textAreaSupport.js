@@ -6,9 +6,10 @@
 class TextAreaSupport{
     // Variables
     #selectedIcons = {
-        'Color': true,
-        'Image': true,
-        'Link': true
+        'Preview': false,
+        'Color': false,
+        'Image': false,
+        'Link': false
     };
 
     #hideIcons = {
@@ -82,6 +83,7 @@ class TextAreaSupport{
             setInterval(() => {
                 if (this.#preview && this.#textLastPreview != this.#newTextArea.innerText) {
                     this.#textLastPreview = this.#newTextArea.innerText;
+                    const elementTextAreaSupportPreview = this.#allElements.elementTextAreaSupportPreview;
                     $.ajax({
                         type: 'post',
                         url: 'index.php',
@@ -90,7 +92,7 @@ class TextAreaSupport{
                             previews: this.#newTextArea.innerText
                         },
                         success: function (response) {
-                            document.querySelector('.textAreaSupport-preview').innerHTML = response;
+                            elementTextAreaSupportPreview.innerHTML = response;
                         }
                     });
                 }
@@ -165,7 +167,7 @@ class TextAreaSupport{
             this.#allElements.elementTextAreaSupportBar_Color.title = "COLOR";
             this.#allElements.elementTextAreaSupportBar_Color.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector('.textAreaSupport-extra-colorpicker').classList.toggle('textAreaSupport-hidden');
+                this.#allElements.elementTextAreaSupportExtra_ColorPicker.classList.toggle('textAreaSupport-hidden');
                 e.currentTarget.classList.toggle('textAreaSupport-bar-button-active');
             })
 
@@ -180,7 +182,7 @@ class TextAreaSupport{
             this.#allElements.elementTextAreaSupportBar_Image.title = "Image";
             this.#allElements.elementTextAreaSupportBar_Image.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector('.textAreaSupport-extra-image').classList.toggle('textAreaSupport-hidden');
+                this.#allElements.elementTextAreaSupportExtra_Image.classList.toggle('textAreaSupport-hidden');
                 e.currentTarget.classList.toggle('textAreaSupport-bar-button-active');
             })
 
@@ -195,7 +197,7 @@ class TextAreaSupport{
                 e.preventDefault();
                 const elementImageAlt = this.#allElements.elementTextAreaSupportExtra_Image_Alt;
                 const elementImageUrl = this.#allElements.elementTextAreaSupportExtra_Image_Url;
-                this.#addFormattedText('[image= alt="' + elementImageAlt.value + '" src="' + elementImageUrl.value + '" /image]', '', true);
+                this.#addFormattedText('[image]src=\'' + elementImageUrl.value + '\' alt=\'' + elementImageAlt.value + '\'[/image]', '', true);
                 elementImageAlt.value = '';
                 elementImageUrl.value = '';
             })
@@ -205,7 +207,7 @@ class TextAreaSupport{
             this.#allElements.elementTextAreaSupportBar_Link.title = "Link";
             this.#allElements.elementTextAreaSupportBar_Link.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector('.textAreaSupport-extra-link').classList.toggle('textAreaSupport-hidden');
+                this.#allElements.elementTextAreaSupportExtra_Link.classList.toggle('textAreaSupport-hidden');
                 e.currentTarget.classList.toggle('textAreaSupport-bar-button-active');
             })
 
@@ -220,10 +222,9 @@ class TextAreaSupport{
                 e.preventDefault();
                 const elementLinkName = this.#allElements.elementTextAreaSupportExtra_Link_Name;
                 const elementLinkUrl = this.#allElements.elementTextAreaSupportExtra_Link_Url;
-                this.#addFormattedText('[link= href="' + elementLinkUrl.value + '" ' + elementLinkName.value + ' /link]', '', true);
+                this.#addFormattedText('[link=' + elementLinkUrl.value + ']' + elementLinkName.value + '[/link]', '', true);
                 elementLinkName.value = '';
                 elementLinkUrl.value = '';
-
             })
 
             this.#newTextArea = this.#allElements.elementTextAreaSupportContent;
@@ -423,19 +424,24 @@ class TextAreaSupport{
     }
 
     setSelectedIcons(config) {
+        if (config.selectedIcons && config.selectedIcons.Preview) {
+            this.#allElements.elementTextAreaSupportPreview.classList.toggle('textAreaSupport-hidden');
+            this.#allElements.elementTextAreaSupportBar_Previews.classList.toggle('textAreaSupport-bar-button-active');
+            this.#selectedIcons.Preview = true;
+        }
         if (config.selectedIcons && config.selectedIcons.Color) {
-            document.querySelector('.textAreaSupport-extra-colorpicker').classList.toggle('textAreaSupport-hidden');
-            document.querySelector('.textAreaSupport-bar-button-color').classList.toggle('textAreaSupport-bar-button-active');
+            this.#allElements.elementTextAreaSupportExtra_ColorPicker.classList.toggle('textAreaSupport-hidden');
+            this.#allElements.elementTextAreaSupportBar_Color.classList.toggle('textAreaSupport-bar-button-active');
             this.#selectedIcons.Color = true;
         }
         if (config.selectedIcons && config.selectedIcons.Image) {
-            document.querySelector('.textAreaSupport-extra-image').classList.toggle('textAreaSupport-hidden');
-            document.querySelector('.textAreaSupport-bar-button-image').classList.toggle('textAreaSupport-bar-button-active');
+            this.#allElements.elementTextAreaSupportExtra_Image.classList.toggle('textAreaSupport-hidden');
+            this.#allElements.elementTextAreaSupportBar_Image.classList.toggle('textAreaSupport-bar-button-active');
             this.#selectedIcons.Image = true;
         }
         if (config.selectedIcons && config.selectedIcons.Link) {
-            document.querySelector('.textAreaSupport-extra-link').classList.toggle('textAreaSupport-hidden');
-            document.querySelector('.textAreaSupport-bar-button-link').classList.toggle('textAreaSupport-bar-button-active');
+            this.#allElements.elementTextAreaSupportExtra_Link.classList.toggle('textAreaSupport-hidden');
+            this.#allElements.elementTextAreaSupportBar_Link.classList.toggle('textAreaSupport-bar-button-active');
             this.#selectedIcons.Link = true;
         }
     }
